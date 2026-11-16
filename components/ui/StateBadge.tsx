@@ -9,12 +9,22 @@ export function stateBadgeVariant(state: FlightRequestState): 'approved' | 'pend
   return 'neutral'
 }
 
+const STATE_LABELS: Record<FlightRequestState, string> = {
+  DRAFT: 'Draft',
+  SUBMITTED: 'Submitted',
+  UNDER_REVIEW: 'Under review',
+  APPROVED: 'Approved',
+  REJECTED: 'Rejected',
+  CANCELLED: 'Cancelled',
+  COMPLETED: 'Completed',
+}
+
 export function StateBadge({ state, testId }: { state: FlightRequestState; testId?: string }) {
   const variant = stateBadgeVariant(state)
   const cls = variant === 'neutral' ? 'sp-badge' : `sp-badge sp-badge--${variant}`
   return (
     <span className={cls} data-testid={testId ?? `state-badge-${state.toLowerCase()}`}>
-      {state.replace(/_/g, ' ')}
+      {STATE_LABELS[state]}
     </span>
   )
 }
