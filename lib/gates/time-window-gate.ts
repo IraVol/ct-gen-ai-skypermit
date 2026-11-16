@@ -26,8 +26,8 @@ export async function evaluateTimeWindowGate(
   }
 
   const durationMin = (windowEnd.getTime() - windowStart.getTime()) / MS_PER_MIN
-  if (durationMin < 15 || durationMin > 240) {
-    return fail('TIME_WINDOW', 'TSD-4 §3', 'Flight duration must be between 15 and 240 minutes.')
+  if (durationMin < 15 || durationMin > 180) {
+    return fail('TIME_WINDOW', 'TSD-4 §3', 'Flight duration must be between 15 and 180 minutes.')
   }
 
   const curfewRuleReference =

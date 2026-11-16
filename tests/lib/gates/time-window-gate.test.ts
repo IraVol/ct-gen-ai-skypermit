@@ -91,7 +91,7 @@ describe('evaluateTimeWindowGate — advance booking limit (TSD-4 §2.2: <= 60 d
   })
 })
 
-describe('evaluateTimeWindowGate — duration (TSD-4 §3: 15-240 minutes inclusive)', () => {
+describe('evaluateTimeWindowGate — duration (TSD-4 §3: 15-180 minutes inclusive)', () => {
   function ctxWithDurationMinutes(minutes: number) {
     const windowStart = new Date(EVALUATED_AT.getTime() + 7 * 24 * 60 * 60 * 1000)
     return makeGateContext({
@@ -103,7 +103,7 @@ describe('evaluateTimeWindowGate — duration (TSD-4 §3: 15-240 minutes inclusi
   }
 
   it('passes at exactly 15 minutes', async () => expect((await evaluateTimeWindowGate(ctxWithDurationMinutes(15))).pass).toBe(true))
-  it('passes at exactly 240 minutes', async () => expect((await evaluateTimeWindowGate(ctxWithDurationMinutes(240))).pass).toBe(true))
+  it('passes at exactly 180 minutes', async () => expect((await evaluateTimeWindowGate(ctxWithDurationMinutes(180))).pass).toBe(true))
 
   it('fails at 14 minutes, citing TSD-4 §3', async () => {
     const result = await evaluateTimeWindowGate(ctxWithDurationMinutes(14))
@@ -111,8 +111,8 @@ describe('evaluateTimeWindowGate — duration (TSD-4 §3: 15-240 minutes inclusi
     if (!result.pass) expect(result.rule_reference).toBe('TSD-4 §3')
   })
 
-  it('fails at 241 minutes, citing TSD-4 §3', async () => {
-    const result = await evaluateTimeWindowGate(ctxWithDurationMinutes(241))
+  it('fails at 181 minutes, citing TSD-4 §3', async () => {
+    const result = await evaluateTimeWindowGate(ctxWithDurationMinutes(181))
     expect(result.pass).toBe(false)
     if (!result.pass) expect(result.rule_reference).toBe('TSD-4 §3')
   })
