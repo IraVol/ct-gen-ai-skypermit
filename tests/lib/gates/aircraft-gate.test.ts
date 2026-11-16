@@ -18,7 +18,7 @@ describe('evaluateAircraftGate — weight band vs zone.permitted_bands', () => {
 
   it('fails when the aircraft band is not in the zone\'s permitted_bands, with gate=AIRCRAFT and the ZC-2026.1 §2 citation', () => {
     // ZTM-RST-7 permits only C0 (docs/06-business-rules.md §4) — a C1
-    // aircraft (901-3500g) must fail here.
+    // aircraft (901-3000g) must fail here.
     const ctx = makeGateContext({
       aircraft: makeAircraft({ mtom_grams: 2000 }), // C1
       zone: makeZone({ code: 'ZTM-RST-7', permitted_bands: ['C0'] }),

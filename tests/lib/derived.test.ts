@@ -45,7 +45,7 @@ describe('pilotCurrencyExpiresOn', () => {
 })
 
 // docs/06-business-rules.md §3 (OH-1 v2.0 §3): four bands, upper-bound
-// inclusive — 0-900 C0, 901-3500 C1, 3501-12000 C2, 12001-30000 C3.
+// inclusive — 0-900 C0, 901-3000 C1, 3001-12000 C2, 12001-30000 C3.
 describe('computeWeightBand — §3 weight band thresholds', () => {
   it('bands the lower boundary and interior of C0', () => {
     expect(computeWeightBand(0)).toBe('C0')
@@ -60,12 +60,12 @@ describe('computeWeightBand — §3 weight band thresholds', () => {
     expect(computeWeightBand(901)).toBe('C1')
   })
 
-  it('3500g is C1 (upper bound inclusive) — not the superseded OH-1 v1.4 4000g boundary', () => {
-    expect(computeWeightBand(3500)).toBe('C1')
+  it('3000g is C1 (upper bound inclusive)', () => {
+    expect(computeWeightBand(3000)).toBe('C1')
   })
 
-  it('3501g is C2', () => {
-    expect(computeWeightBand(3501)).toBe('C2')
+  it('3001g is C2', () => {
+    expect(computeWeightBand(3001)).toBe('C2')
   })
 
   it('12000g is C2 (upper bound inclusive)', () => {

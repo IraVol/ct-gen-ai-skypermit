@@ -24,7 +24,7 @@ export function computePilotCurrencyStatus(
 // closed range in practice, but the check is written defensively.
 export function computeWeightBand(mtomGrams: number): WeightBand {
   if (mtomGrams <= 900) return 'C0'
-  if (mtomGrams <= 3500) return 'C1'
+  if (mtomGrams <= 3000) return 'C1'
   if (mtomGrams <= 12000) return 'C2'
   return 'C3'
 }
